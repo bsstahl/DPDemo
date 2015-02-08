@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPath", "ShortestPath\ShortestPath.csproj", "{A990D54A-087A-445E-B7FE-68C43C361186}"
 EndProject
@@ -11,25 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPath.Optimization.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPath.Optimization.DP", "ShortestPath.Optimization.DP\ShortestPath.Optimization.DP.csproj", "{DA1723DD-08CB-4B37-B03B-BFF6A7361403}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chutes.Optimization", "Chutes.Optimization\Chutes.Optimization.csproj", "{A53A7533-7010-4E54-93E6-B68DB3C0D541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chutes", "Chutes\Chutes.csproj", "{89C758A3-2DE9-47C3-BD5D-CCE7C41B57C9}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://bsstahl.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ShortestPath\\ShortestPath.csproj
-		SccProjectName1 = ShortestPath
-		SccLocalPath1 = ShortestPath
-		SccProjectUniqueName2 = ShortestPath.Optimization\\ShortestPath.Optimization.csproj
-		SccProjectName2 = ShortestPath.Optimization
-		SccLocalPath2 = ShortestPath.Optimization
-		SccProjectUniqueName3 = ShortestPath.Optimization.Naive\\ShortestPath.Optimization.Naive.csproj
-		SccProjectName3 = ShortestPath.Optimization.Naive
-		SccLocalPath3 = ShortestPath.Optimization.Naive
-		SccProjectUniqueName4 = ShortestPath.Optimization.DP\\ShortestPath.Optimization.DP.csproj
-		SccProjectName4 = ShortestPath.Optimization.DP
-		SccLocalPath4 = ShortestPath.Optimization.DP
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -51,6 +37,14 @@ Global
 		{DA1723DD-08CB-4B37-B03B-BFF6A7361403}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA1723DD-08CB-4B37-B03B-BFF6A7361403}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA1723DD-08CB-4B37-B03B-BFF6A7361403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A53A7533-7010-4E54-93E6-B68DB3C0D541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A53A7533-7010-4E54-93E6-B68DB3C0D541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A53A7533-7010-4E54-93E6-B68DB3C0D541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A53A7533-7010-4E54-93E6-B68DB3C0D541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C758A3-2DE9-47C3-BD5D-CCE7C41B57C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C758A3-2DE9-47C3-BD5D-CCE7C41B57C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C758A3-2DE9-47C3-BD5D-CCE7C41B57C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C758A3-2DE9-47C3-BD5D-CCE7C41B57C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

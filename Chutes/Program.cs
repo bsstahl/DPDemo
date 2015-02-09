@@ -20,7 +20,19 @@ namespace Chutes
             pathways.AddPair(23, 6);
 
             var board = new Gameboard(25, pathways);
+            Chutes.Optimization.Interfaces.IShortestPathEngine engine = new Chutes.Optimization.Naive.GreedyEngine1(board);
 
+            var fewestSpacesPath = engine.GetPathWithFewestSpacesTraversed(0);
+            Console.WriteLine("Fewest spaces traversed:");
+            Console.WriteLine(fewestSpacesPath.ToString());
+            Console.WriteLine("Path length: {0}", fewestSpacesPath.Length);
+
+            Console.WriteLine("");
+
+            var fewestRollsPath = engine.GetPathWithFewestRollsNeeded(0);
+            Console.WriteLine("Fewest rolls:");
+            Console.WriteLine(fewestRollsPath.ToString());
+            Console.WriteLine("Rolls: {0}", fewestRollsPath.RollCount);
         }
     }
 }

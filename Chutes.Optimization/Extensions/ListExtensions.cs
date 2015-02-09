@@ -14,5 +14,11 @@ namespace Chutes.Optimization.Extensions
             list.Add(newPair);
             return newPair;
         }
+
+        public static IEnumerable<Entities.Gamespace> Pathways(this IEnumerable<Entities.Gamespace> list)
+        {
+            return list.Where(s => s.PathTo.HasValue);
+        }
+
     }
 }

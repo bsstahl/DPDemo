@@ -48,6 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Chutes.Optimization.Naive\Chutes.Optimization.Naive.csproj">
+      <Project>{c926f795-ca0f-4b6c-87af-90c98006fb64}</Project>
+      <Name>Chutes.Optimization.Naive</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Chutes.Optimization\Chutes.Optimization.csproj">
       <Project>{a53a7533-7010-4e54-93e6-b68db3c0d541}</Project>
       <Name>Chutes.Optimization</Name>

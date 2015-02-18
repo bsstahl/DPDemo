@@ -8,8 +8,6 @@ namespace Chutes.Optimization.Interfaces
 {
     public interface IShortestPathEngine
     {
-        Entities.Path GetPathWithFewestSpacesTraversed(int startingIndex);
-
-        Entities.Path GetPathWithFewestRollsNeeded(int startingIndex);
+        Entities.Path GetPath();
     }
 }

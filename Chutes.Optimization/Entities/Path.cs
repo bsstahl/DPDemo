@@ -15,6 +15,15 @@ namespace Chutes.Optimization.Entities
             _path.Clear();
         }
 
+        private Path(IEnumerable<Gamespace> list)
+            : this()
+        {
+            foreach (var item in list)
+            {
+                this.Add(item);
+            }
+        }
+
         public Gamespace Add(Gamespace space)
         {
             if (_path.Any())
@@ -24,14 +33,9 @@ namespace Chutes.Optimization.Entities
             return space;
         }
 
-        public int Length 
+        public int Length
         {
             get { return _path.Count; }
-        }
-
-        public int RollCount
-        {
-            get { return _path.Where(s => !s.PathTo.HasValue).Count(); }
         }
 
         public override string ToString()
@@ -42,9 +46,9 @@ namespace Chutes.Optimization.Entities
             return sb.ToString();
         }
 
-        public IEnumerable<Gamespace> Reverse()
+        public Entities.Path Reverse()
         {
-            throw new NotImplementedException();
+            return new Path(_path.Reverse());
         }
 
     }

@@ -14,7 +14,7 @@ namespace Chutes.Optimization.Entities
         public Gameboard(int size, IEnumerable<KeyValuePair<int, int>> pathways)
         {
             _spaces.Clear();
-            for (int i = 0; i < size; i++)
+            for (int i = 1; i <= size; i++)
             {
                 var newSpace = new Gamespace() { Index = i };
                 if (pathways.Any(p => p.Key == i))
@@ -25,12 +25,12 @@ namespace Chutes.Optimization.Entities
 
         public Gamespace this[int index]
         {
-            get { return _spaces[index]; }
+            get { return _spaces.Single(s => s.Index == index); }
         }
 
         public int LastIndex 
         {
-            get { return _spaces.Count - 1; }
+            get { return _spaces.Count; }
         }
 
         public Gameboard Clone()
@@ -46,9 +46,9 @@ namespace Chutes.Optimization.Entities
         {
             var sb = new StringBuilder();
             sb.Append(" ");
-            for (var i = _spaces.Count - 1; i >= 0; i--)
+            for (var i = _spaces.Count; i > 0; i--)
             {
-                var s = _spaces[i];
+                var s = this[i];
                 if (s.DistanceFromStart.HasValue)
                     sb.Append(s.DistanceFromStart.Value.ToString("00"));
                 else
@@ -64,6 +64,21 @@ namespace Chutes.Optimization.Entities
             sb.AppendLine("");
 
             return sb.ToString();
+        }
+
+        public Gamespace PathFrom(int spaceIndex)
+        {
+            return _spaces.SingleOrDefault(s => s.PathTo.HasValue && s.PathTo.Value == spaceIndex);
+        }
+
+        public IEnumerable<Gamespace> SpacesAtDistance(int distance)
+        {
+            return _spaces.Where(s => s.DistanceFromStart == distance);
+        }
+
+        public IEnumerable<Gamespace> NeighborsAtDistance(int distance, int currentIndex)
+        {
+            return this.SpacesAtDistance(distance).Where(s => (s.Index == (currentIndex - 1)) || (s.PathTo.HasValue && s.PathTo.Value == currentIndex));
         }
     }
 }

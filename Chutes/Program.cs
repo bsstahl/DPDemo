@@ -35,21 +35,14 @@ namespace Chutes
             pathways.AddPair(98,78);
 
             var board = new Gameboard(100, pathways);
+            
+            // Select the engine you wish to use
             Chutes.Optimization.Interfaces.IShortestPathEngine engine = new Chutes.Optimization.Naive.GreedyEngine1(board);
             // Chutes.Optimization.Interfaces.IShortestPathEngine engine = new Chutes.Optimization.DP.Engine(board);
 
             var path = engine.GetPath();
-            Console.WriteLine("Fewest spaces traversed:");
             Console.WriteLine(path.ToString());
             Console.WriteLine("Path length: {0}", path.Length);
-
-            //Console.WriteLine("");
-
-            //var fewestRollsPath = engine.GetPathWithFewestRollsNeeded();
-            //Console.WriteLine("Fewest rolls:");
-            //Console.WriteLine(fewestRollsPath.ToString());
-            //Console.WriteLine("Rolls: {0}", fewestRollsPath.Length);
-
 
         }
     }

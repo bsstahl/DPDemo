@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chutes.Optimization", "Chut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chutes", "Chutes\Chutes.csproj", "{89C758A3-2DE9-47C3-BD5D-CCE7C41B57C9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dijkstra", "Dijkstra", "{63AEC0C3-20B0-417F-B146-3592F2F4F3A9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shortest Path", "Shortest Path", "{63AEC0C3-20B0-417F-B146-3592F2F4F3A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChutesAndLadders", "ChutesAndLadders", "{669D7360-92D0-497B-8037-7D5D6AEBC676}"
 EndProject

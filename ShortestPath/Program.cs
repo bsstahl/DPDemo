@@ -19,15 +19,15 @@ namespace ShortestPath
             var endPoint = new Optimization.Entities.GridLocation(3, 1);
 
             // Construct the appropriate path engine
-            // Optimization.Interfaces.IPathProvider engine = new ShortestPath.Optimization.Naive.Engine();
-            Optimization.Interfaces.IPathProvider engine = new ShortestPath.Optimization.DP.Engine();
+            Optimization.Interfaces.IPathProvider engine = new ShortestPath.Optimization.Naive.Engine();
+            // Optimization.Interfaces.IPathProvider engine = new ShortestPath.Optimization.DP.Engine();
 
             var path = engine.FindPath(grid, startPoint, endPoint);
 
             Console.WriteLine(grid.ToString()); // Display final grid
 
-            Console.WriteLine("Path length: {0}", path.Length);
             Console.WriteLine(path.ToString());
+            Console.WriteLine("Path length: {0}", path.Length);
         }
 
         private static Optimization.Entities.Grid ConstructGrid()

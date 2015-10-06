@@ -44,6 +44,18 @@ namespace ShortestPath.Optimization.Entities
             }
         }
 
+        public void Clear()
+        {
+            for (int x = 0; x < this.Width; x++)
+            {
+                for (int y = 0; y < this.Height; y++)
+                {
+                    var location = GetLocation(x, y);
+                    location.DistanceFromStart = null;
+                }
+            }
+        }
+
         public IEnumerable<Entities.GridLocation> LocationsAtDistance(int distance)
         {
             return _list.Where(l => l.DistanceFromStart.HasValue && l.DistanceFromStart == distance);

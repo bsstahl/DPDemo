@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShortestPath.Optimization.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,7 @@ namespace ShortestPath
             // Optimization.Interfaces.IPathProvider engine = new ShortestPath.Optimization.DP.Engine();
 
             Console.WriteLine(grid.ToString()); // Display initial grid
-
-            var path = engine.FindPath(grid, startPoint, endPoint);
-
+            Path path = engine.FindPath(grid, startPoint, endPoint);
             Console.WriteLine(grid.ToString()); // Display final grid
 
             // Display results

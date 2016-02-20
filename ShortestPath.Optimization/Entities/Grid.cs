@@ -132,7 +132,7 @@ namespace ShortestPath.Optimization.Entities
             return sb.ToString();
         }
 
-        private GridLocation GetLocation(int x, int y)
+        public GridLocation GetLocation(int x, int y)
         {
             if (!this.LocationIsValid(x, y))
                 return null;

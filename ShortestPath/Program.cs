@@ -15,14 +15,16 @@ namespace ShortestPath
         {
             Optimization.Entities.Grid grid = ConstructGrid();
 
-            var startPoint = new Optimization.Entities.GridLocation(0, 2);
-            var endPoint = new Optimization.Entities.GridLocation(3, 1);
+            var startPoint = grid.GetLocation(0, 2);
+            var endPoint = grid.GetLocation(3, 1);
 
             while (true)
             {
                 // Construct the appropriate path engine
                 Optimization.Interfaces.IPathProvider engine = new ShortestPath.Optimization.Naive.Engine();
                 // Optimization.Interfaces.IPathProvider engine = new ShortestPath.Optimization.DP.Engine();
+
+                grid.Clear();
 
                 Console.WriteLine(grid.ToString()); // Display initial grid
                 Path path = engine.FindPath(grid, startPoint, endPoint);
@@ -31,8 +33,9 @@ namespace ShortestPath
                 // Display results
                 Console.WriteLine(path.ToString());
                 Console.WriteLine("Path length: {0}", path.Length);
+                Console.WriteLine("Distance from start of endpoint: {0}", endPoint.DistanceFromStart);
 
-                Console.ReadKey();
+                 Console.ReadKey();
             }
         }
 

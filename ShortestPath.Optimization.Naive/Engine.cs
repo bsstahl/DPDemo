@@ -28,7 +28,8 @@ namespace ShortestPath.Optimization.Naive
                     if (grid.LocationIsTraversable(newX, newY))
                     {
                         var newLocation = grid[newX, newY];
-                        newLocation.DistanceFromStart = currentLocation.DistanceFromStart + 1;
+                        // if (!newLocation.DistanceFromStart.HasValue)
+                            newLocation.DistanceFromStart = currentLocation.DistanceFromStart + 1;
                         currentLocation = result.Add(newLocation);
                     }
                 }

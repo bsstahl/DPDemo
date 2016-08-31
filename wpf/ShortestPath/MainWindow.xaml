@@ -1,0 +1,146 @@
+﻿<Window x:Class="ShortestPath.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dynamic Programming" Height="600" Width="850">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="40" />
+      <RowDefinition />
+      <RowDefinition Height="40" />
+    </Grid.RowDefinitions>
+    <StackPanel Orientation="Horizontal">
+      <ComboBox SelectedIndex="{Binding SearchOptionIndex}" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0">
+        <ListBoxItem Content="Naive Search"/>
+        <ListBoxItem Content="Direct Path"/>
+      </ComboBox>
+    </StackPanel>
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="60*" />
+        <ColumnDefinition Width="40*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="25" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <GridSplitter Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Width="4" Margin="0,15,0,0" Background="Black"/>
+      <TextBlock Text="Grid:" VerticalAlignment="Center" FontWeight="Bold" Margin="20,0,0,0"/>
+      <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="2" Padding="10" Margin="15, 15, 20, 15">
+        <Grid Margin="0,0,8,0">
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+          <TextBlock Grid.Row="6" Grid.Column="6" Text="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="5" Text="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="4" Text="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+
+          <TextBlock Grid.Row="5" Grid.Column="1" DataContext="{Binding DisplayGrid[0-0]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" DataContext="{Binding DisplayGrid[0-1]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" DataContext="{Binding DisplayGrid[0-2]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" DataContext="{Binding DisplayGrid[0-3]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" DataContext="{Binding DisplayGrid[0-4]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" DataContext="{Binding DisplayGrid[0-5]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+
+          <TextBlock Grid.Row="5" Grid.Column="2" DataContext="{Binding DisplayGrid[1-0]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" DataContext="{Binding DisplayGrid[1-1]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" DataContext="{Binding DisplayGrid[1-2]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" DataContext="{Binding DisplayGrid[1-3]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" DataContext="{Binding DisplayGrid[1-4]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" DataContext="{Binding DisplayGrid[1-5]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+
+          <TextBlock Grid.Row="5" Grid.Column="3" DataContext="{Binding DisplayGrid[2-0]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" DataContext="{Binding DisplayGrid[2-1]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" DataContext="{Binding DisplayGrid[2-2]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" DataContext="{Binding DisplayGrid[2-3]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" DataContext="{Binding DisplayGrid[2-4]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" DataContext="{Binding DisplayGrid[2-5]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+
+          <TextBlock Grid.Row="5" Grid.Column="4" DataContext="{Binding DisplayGrid[3-0]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" DataContext="{Binding DisplayGrid[3-1]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" DataContext="{Binding DisplayGrid[3-2]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" DataContext="{Binding DisplayGrid[3-3]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" DataContext="{Binding DisplayGrid[3-4]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" DataContext="{Binding DisplayGrid[3-5]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+
+          <TextBlock Grid.Row="5" Grid.Column="5" DataContext="{Binding DisplayGrid[4-0]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="4" Grid.Column="5" DataContext="{Binding DisplayGrid[4-1]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="3" Grid.Column="5" DataContext="{Binding DisplayGrid[4-2]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="2" Grid.Column="5" DataContext="{Binding DisplayGrid[4-3]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="1" Grid.Column="5" DataContext="{Binding DisplayGrid[4-4]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="0" Grid.Column="5" DataContext="{Binding DisplayGrid[4-5]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+
+          <TextBlock Grid.Row="5" Grid.Column="6" DataContext="{Binding DisplayGrid[5-0]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="4" Grid.Column="6" DataContext="{Binding DisplayGrid[5-1]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="3" Grid.Column="6" DataContext="{Binding DisplayGrid[5-2]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="2" Grid.Column="6" DataContext="{Binding DisplayGrid[5-3]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="1" Grid.Column="6" DataContext="{Binding DisplayGrid[5-4]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+          <TextBlock Grid.Row="0" Grid.Column="6" DataContext="{Binding DisplayGrid[5-5]}" Text="{Binding Text}" Background="{Binding BGColor}" Foreground="{Binding FGColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+
+        </Grid>
+      </Border>
+      <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="15,0,8,0" >
+        <TextBlock Text="Path Length: " VerticalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Text="{Binding PathLength}" FontFamily="Courier New" FontSize="12" VerticalAlignment="Center"/>
+      </StackPanel>
+      <ListBox Grid.Column="1" Grid.Row="1" Margin="10,15" ItemsSource="{Binding SearchResults}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <ListBox.ItemsPanel>
+          <ItemsPanelTemplate>
+            <WrapPanel Orientation="Vertical" ItemWidth="100"/>
+          </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>  
+      </ListBox>
+    </Grid>
+            
+    <StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft" >
+      <StackPanel.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FFB96666"/>
+          <GradientStop Color="#FF631616" Offset="1"/>
+        </LinearGradientBrush>
+      </StackPanel.Background>
+      <Button Content="Close" Foreground="White" Width="80" Margin="5,3" Command="{Binding CloseCommand}" >
+        <Button.Background>
+          <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFB96666"/>
+            <GradientStop Color="#FF631616" Offset="1"/>
+          </LinearGradientBrush>
+        </Button.Background>
+      </Button>
+      <Button Content="Execute" Foreground="White" Width="80" Margin="5,3" Command="{Binding ExecuteSearchCommand}" >
+        <Button.Background>
+          <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFB96666"/>
+            <GradientStop Color="#FF631616" Offset="1"/>
+          </LinearGradientBrush>
+        </Button.Background>
+      </Button>
+    </StackPanel>
+  </Grid>
+</Window>

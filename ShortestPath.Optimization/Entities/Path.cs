@@ -33,7 +33,7 @@ namespace ShortestPath.Optimization.Entities
             var result = new Path();
             foreach (var item in _list.Reverse())
             {
-                result.Add(item);
+              result.Add(item);
             }
             return result;
         }
@@ -46,6 +46,17 @@ namespace ShortestPath.Optimization.Entities
                 sb.AppendLine(String.Format("{0},{1}", item.X, item.Y));
             }
             return sb.ToString();
+        }
+
+        public List<string> ToList()
+        {
+          List<string> result = new List<string>();
+          foreach (var item in _list)
+          {
+            string s1 = string.Format("{0},{1}", item.X, item.Y);
+            result.Add(s1);
+          }
+          return result;
         }
     }
 }

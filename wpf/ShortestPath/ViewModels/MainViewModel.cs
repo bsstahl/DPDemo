@@ -53,15 +53,18 @@ namespace ShortestPath.ViewModels
         #endregion CloseCommand
 
         #region ExecuteSearchCommand
+
         private ICommand _executeSearchCommand = null;
         public ICommand ExecuteSearchCommand
         {
             get { return _executeSearchCommand; }
             set { _executeSearchCommand = value; }
         }
+
         #endregion ExecuteCommand
 
         #region Engine
+
         private Optimization.Interfaces.IPathProvider _engine = null;
         public Optimization.Interfaces.IPathProvider Engine
         {
@@ -70,23 +73,28 @@ namespace ShortestPath.ViewModels
                 if (_engine == null)
                 {
                     _engine = new ShortestPath.Optimization.Naive.Engine();
-                    _engine.PropertyChanged += Engine_PropertyChanged;
+
+                    // TODO: Restore propertychanged
+                    // _engine.PropertyChanged += Engine_PropertyChanged;
                 }
                 return _engine;
             }
             set
             {
-                if (_engine != null)
-                    _engine.PropertyChanged -= Engine_PropertyChanged;
+                // TODO: Restore propertychanged
+                //if (_engine != null)
+                //    _engine.PropertyChanged -= Engine_PropertyChanged;
                 _engine = value;
-                _engine.PropertyChanged += Engine_PropertyChanged;
+                //_engine.PropertyChanged += Engine_PropertyChanged;
 
                 this.NotifyPropertyChanged("Engine");
             }
         }
+
         #endregion Engine
 
         #region SearchOptionIndex
+
         private int _searchOptionIndex = 0;
         public int SearchOptionIndex
         {
@@ -110,24 +118,34 @@ namespace ShortestPath.ViewModels
             }
         }
 
-        void Engine_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Path")
-            {
-                this.PathLength = this.Engine.Path.Length;
-                this.SearchResults = this.Engine.Path.ToList();
-            }
-        }
+        //void Engine_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName == "Path")
+        //    {
+        //        this.PathLength = this.Engine.Path.Length;
+        //        this.SearchResults = this.Engine.Path.ToList();
+        //    }
+        //}
+
         #endregion SearchOptionIndex
 
         #region ExecuteSearch
+
         void ExecuteSearch(object arg)
         {
-            this.DisplayGrid = this.ConstructGrid();
+            var startPoint = new Optimization.Entities.GridLocation(0, 2);
+            var endPoint = new Optimization.Entities.GridLocation(3, 1);
 
-            this.Engine.FindPath(DisplayGrid);
+            // TODO: Restore if needed
+            //startPoint.IsStartPoint = true;
+            //endPoint.IsEndPoint = true;
+
+            this.DisplayGrid = this.ConstructGrid();
+            this.Engine.FindPath(DisplayGrid, startPoint, endPoint);
         }
+
         #endregion ExecuteSearch
+
         #region PathLength
         private int _pathLength = 0;
         public int PathLength
@@ -161,11 +179,6 @@ namespace ShortestPath.ViewModels
 
         private Optimization.Entities.Grid ConstructGrid()
         {
-            var startPoint = new Optimization.Entities.GridLocation(0, 2);
-            var endPoint = new Optimization.Entities.GridLocation(3, 1);
-            startPoint.IsStartPoint = true;
-            endPoint.IsEndPoint = true;
-
             var roadblocks = new List<Optimization.Entities.GridLocation>();
             roadblocks.Add(new Optimization.Entities.GridLocation(1, 1, true));
             roadblocks.Add(new Optimization.Entities.GridLocation(1, 2, true));
@@ -173,7 +186,7 @@ namespace ShortestPath.ViewModels
             roadblocks.Add(new Optimization.Entities.GridLocation(2, 0, true));
             roadblocks.Add(new Optimization.Entities.GridLocation(2, 1, true));
 
-            return new Optimization.Entities.Grid(_gridSize, _gridSize, roadblocks, startPoint, endPoint);
+            return new Optimization.Entities.Grid(_gridSize, _gridSize, roadblocks);
         }
 
         #region ApplicationClose

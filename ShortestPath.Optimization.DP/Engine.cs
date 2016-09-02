@@ -3,46 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShortestPath.Optimization.Entities;
 using ShortestPath.Optimization.Extensions;
-using System.ComponentModel;
+using ShortestPath.Optimization.Interfaces;
 
 namespace ShortestPath.Optimization.DP
 {
-    public class Engine : ShortestPath.Optimization.Interfaces.IPathProvider, INotifyPropertyChanged
+    public class Engine : IPathProvider
     {
-      #region INotifyPropertyChanged Implementation
-      public event PropertyChangedEventHandler PropertyChanged;
-      public void NotifyPropertyChanged(string propertyName)
-      {
-        var handler = PropertyChanged;
-        if (handler != null)
+        public Entities.Path FindPath(Entities.Grid grid, Entities.GridLocation startPoint, Entities.GridLocation endPoint)
         {
-          handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-      }
-      #endregion INotifyPropertyChanged Implementation
-
-      #region Path
-      private Entities.Path _path = null;
-      public Entities.Path Path
-      {
-        get { return _path; }
-        set
-        {
-          _path = value;
-          this.NotifyPropertyChanged("Path");
-        }
-      }
-      #endregion Path
-
-        public void FindPath(Entities.Grid grid)
-        {
-          Entities.Path path = null;
-          var startingLocation = grid[grid.StartPoint.X, grid.StartPoint.Y];
-          var endingLocation = grid[grid.EndPoint.X, grid.EndPoint.Y];
-          ProcessLocation(0, grid, startingLocation, endingLocation);
-          path = RetraceSteps(grid, grid.EndPoint);
-          this.Path = path;
+            var startingLocation = grid[startPoint.X, startPoint.Y];
+            var endingLocation = grid[endPoint.X, endPoint.Y];
+            ProcessLocation(0, grid, startingLocation, endingLocation);
+            return RetraceSteps(grid, endPoint);
         }
 
         private Entities.Path RetraceSteps(Entities.Grid grid, Entities.GridLocation endPoint)
@@ -80,5 +54,6 @@ namespace ShortestPath.Optimization.DP
                     }
             }
         }
+
     }
 }

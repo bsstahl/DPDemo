@@ -15,6 +15,11 @@ namespace ShortestPath.ViewModels
         {
             this.ExecuteSearchCommand = new Command(this.ExecuteSearch);
             this.CloseCommand = new Command(this.ApplicationClose);
+
+            this.StartPoint = new GridLocation(0,2);
+            this.EndPoint = new GridLocation(3,1);
+
+            this.DisplayGrid = new DisplayGrid(ConstructGrid(), this.StartPoint, this.EndPoint);
         }
 
         #region DisplayGrid
@@ -87,6 +92,10 @@ namespace ShortestPath.ViewModels
 
         #endregion SearchOptionIndex
 
+        public GridLocation StartPoint { get; set; }
+
+        public GridLocation EndPoint { get; set; }
+
         #region PathLength
 
         private int _pathLength = 0;
@@ -147,9 +156,6 @@ namespace ShortestPath.ViewModels
 
         void ExecuteSearch(object arg)
         {
-            var startPoint = new GridLocation(0, 2);
-            var endPoint = new GridLocation(3, 1);
-
             // Construct the appropriate path engine
             if (this.SearchOptionIndex == 0)
                 this.Engine = new ShortestPath.Optimization.Naive.Engine();
@@ -157,9 +163,9 @@ namespace ShortestPath.ViewModels
                 this.Engine = new ShortestPath.Optimization.DP.Engine();
 
             var grid = this.ConstructGrid();
-            var path = this.Engine.FindPath(grid, startPoint, endPoint);
+            var path = this.Engine.FindPath(grid, this.StartPoint, this.EndPoint);
 
-            this.DisplayGrid = new DisplayGrid(grid, startPoint, endPoint);
+            this.DisplayGrid = new DisplayGrid(grid, this.StartPoint, this.EndPoint);
             this.PathLength = path.Length;
             this.SearchResults = path.ToList();
         }

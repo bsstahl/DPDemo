@@ -8,13 +8,27 @@ using System.Threading.Tasks;
 
 namespace ShortestPath.ViewModels
 {
-    public class Grid : Optimization.Entities.Grid, INotifyPropertyChanged
+    public class DisplayGrid : INotifyPropertyChanged
     {
-        public Grid(int gridWidth, int gridHeight, IEnumerable<Optimization.Entities.GridLocation> roadblocks, GridLocation startPoint, GridLocation endPoint) : base(gridWidth, gridHeight, roadblocks)
+        public DisplayGrid(Grid grid, GridLocation startPoint, GridLocation endPoint)
         {
             this.StartPoint = startPoint;
             this.EndPoint = endPoint;
+
+            for (int x = 0; x < grid.Width; x++)
+                for (int y = 0; y < grid.Height; y++)
+                    _list.Add(new DisplayLocation()
+                    { 
+                        X = x,
+                        Y = y,
+                        DistanceFromStart = grid[x,y].DistanceFromStart,
+                        IsEndPoint = (x == endPoint.X && y == endPoint.Y),
+                        IsStartPoint = (x == startPoint.X && y == startPoint.Y),
+                        IsRoadblock = grid[x,y].IsRoadblock
+                    });
         }
+
+        private List<DisplayLocation> _list = new List<DisplayLocation>();
 
         #region INotifyPropertyChanged Implementation
 
@@ -32,12 +46,13 @@ namespace ShortestPath.ViewModels
 
         #region Width
 
-        public new int Width
+        private int _width;
+        public int Width
         {
-            get { return base.Width; }
+            get { return _width; }
             set
             {
-                base.Width = value;
+                _width = value;
                 this.NotifyPropertyChanged("Width");
             }
         }
@@ -46,12 +61,13 @@ namespace ShortestPath.ViewModels
 
         #region Height
 
-        public new int Height
+        private int _height;
+        public int Height
         {
-            get { return base.Height; }
+            get { return _height; }
             set
             {
-                base.Height = value;
+                _height = value;
                 this.NotifyPropertyChanged("Height");
             }
         }
@@ -100,22 +116,20 @@ namespace ShortestPath.ViewModels
 
         #region GridLocation
 
-        public Optimization.Entities.GridLocation this[string index]
+        public DisplayLocation this[string index]
         {
             get
             {
                 int x, y;
                 this.SplitIndex(index, out x, out y);
-                return base[x, y];
+                return _list.Single(l => l.X == x && l.Y == y);
             }
             //set
             //{
             //    int x, y;
             //    this.SplitIndex(index, out x, out y);
+            //    this.NotifyPropertyChanged("GridLocation");
             //    base[x, y] = value;
-
-            //    // TODO: Move NotifyPropertyChanged
-            //    // this.NotifyPropertyChanged("GridLocation");
             //}
         }
 

@@ -53,10 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Engines\NaiveEngine.cs" />
     <Compile Include="Utilities\Command.cs" />
-    <Compile Include="ViewModels\Grid.cs" />
-    <Compile Include="ViewModels\GridLocation.cs" />
+    <Compile Include="ViewModels\DisplayGrid.cs" />
+    <Compile Include="ViewModels\DisplayLocation.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

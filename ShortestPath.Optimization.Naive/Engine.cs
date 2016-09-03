@@ -16,9 +16,6 @@ namespace ShortestPath.Optimization.Naive
             var result = new ShortestPath.Optimization.Entities.Path();
             var currentLocation = result.Add(grid[startPoint.X, startPoint.Y]);
 
-            // TODO: Restore if needed
-            // currentLocation.IsStartPoint = true;
-
             currentLocation.DistanceFromStart = 0;
 
             while (!IsCurrentLocationTheEndPoint(currentLocation, endPoint))
@@ -34,13 +31,6 @@ namespace ShortestPath.Optimization.Naive
                     {
                         var newLocation = grid[newX, newY];
                         newLocation.DistanceFromStart = currentLocation.DistanceFromStart + 1;
-
-                        // TODO: Restore if needed
-                        //if (IsCurrentLocationTheEndPoint(newLocation, endPoint))
-                        //{
-                        //    newLocation.IsEndPoint = true;
-                        //}
-
                         currentLocation = result.Add(newLocation);
                     }
                 }

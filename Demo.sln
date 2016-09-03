@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chutes.Optimization.DP", "C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UIs", "UIs", "{3767E24D-FB2D-4894-A7D5-3E9FBBCDFA48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPath", "wpf\ShortestPath\ShortestPath.csproj", "{503E2523-CEA7-4810-87DD-5DFB403D4E98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPathDesktop", "wpf\ShortestPath\ShortestPathDesktop.csproj", "{503E2523-CEA7-4810-87DD-5DFB403D4E98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPathConsole", "ShortestPath\ShortestPathConsole.csproj", "{A990D54A-087A-445E-B7FE-68C43C361186}"
 EndProject

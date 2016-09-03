@@ -10,9 +10,5 @@ namespace ShortestPath.Optimization.Interfaces
     public interface IPathProvider
     {
         Entities.Path FindPath(Entities.Grid grid, Entities.GridLocation startPoint, Entities.GridLocation endPoint);
-
-        // TODO: Reimplement PropertyChanged
-        // event PropertyChangedEventHandler PropertyChanged;
-        // Entities.Path Path { get; set; }
     }
 }

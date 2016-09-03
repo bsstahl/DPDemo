@@ -10,8 +10,8 @@
     </Grid.RowDefinitions>
     <StackPanel Orientation="Horizontal">
       <ComboBox SelectedIndex="{Binding SearchOptionIndex}" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0">
-        <ListBoxItem Content="Naive Search"/>
-        <ListBoxItem Content="Direct Path"/>
+        <ListBoxItem Content="Naïve Search"/>
+        <ListBoxItem Content="Dyn. Prog"/>
       </ComboBox>
     </StackPanel>
     <Grid Grid.Row="1">

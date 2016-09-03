@@ -21,27 +21,34 @@ namespace ShortestPath.Optimization.Entities
             {
                 if (!LocationIsValid(x, y))
                     throw new InvalidOperationException();
-
                 return GetLocation(x, y);
             }
         }
 
         private List<GridLocation> _list = new List<GridLocation>();
 
-        public Grid(int gridWidth, int gridHeight, IEnumerable<Entities.GridLocation> roadblocks)
+        protected Grid(int gridWidth, int gridHeight)
         {
             this.Width = gridWidth;
             this.Height = gridHeight;
+        }
 
+        public Grid(int gridWidth, int gridHeight, IEnumerable<Entities.GridLocation> roadblocks) : this(gridWidth, gridHeight)
+        {
             _list.Clear();
             for (int x = 0; x < gridWidth; x++)
             {
                 for (int y = 0; y < gridHeight; y++)
                 {
                     var isRoadblock = roadblocks.Any(l => l.X == x && l.Y == y);
-                    _list.Add(new GridLocation(x, y, isRoadblock));
+                    this.Add(new GridLocation(x, y, isRoadblock));
                 }
             }
+        }
+
+        protected void Add(GridLocation location)
+        {
+            _list.Add(location);
         }
 
         public void Clear()
@@ -51,7 +58,8 @@ namespace ShortestPath.Optimization.Entities
                 for (int y = 0; y < this.Height; y++)
                 {
                     var location = GetLocation(x, y);
-                    location.DistanceFromStart = null;
+                    if (location != null)
+                        location.DistanceFromStart = null;
                 }
             }
         }

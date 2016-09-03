@@ -1,4 +1,5 @@
-﻿using ShortestPath.Utilities;
+﻿using ShortestPath.Optimization.Entities;
+using ShortestPath.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
@@ -8,23 +9,18 @@ namespace ShortestPath.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        #endregion INotifyPropertyChanged Implementation
-
         const int _gridSize = 6;
 
+        public MainViewModel()
+        {
+            this.ExecuteSearchCommand = new Command(this.ExecuteSearch);
+            this.CloseCommand = new Command(this.ApplicationClose);
+        }
+
         #region DisplayGrid
-        private Optimization.Entities.Grid _displayGrid = null;
-        public Optimization.Entities.Grid DisplayGrid
+
+        private DisplayGrid _displayGrid = null;
+        public DisplayGrid DisplayGrid
         {
             get { return _displayGrid; }
             set
@@ -33,15 +29,8 @@ namespace ShortestPath.ViewModels
                 this.NotifyPropertyChanged("DisplayGrid");
             }
         }
+
         #endregion DisplayGrid
-
-        public MainViewModel()
-        {
-            this.ExecuteSearchCommand = new Command(this.ExecuteSearch);
-            this.CloseCommand = new Command(this.ApplicationClose);
-
-            this.LoadBoard();
-        }
 
         #region CloseCommand
         private ICommand _closeCommand = null;
@@ -71,22 +60,12 @@ namespace ShortestPath.ViewModels
             get
             {
                 if (_engine == null)
-                {
                     _engine = new ShortestPath.Optimization.Naive.Engine();
-
-                    // TODO: Restore propertychanged
-                    // _engine.PropertyChanged += Engine_PropertyChanged;
-                }
                 return _engine;
             }
             set
             {
-                // TODO: Restore propertychanged
-                //if (_engine != null)
-                //    _engine.PropertyChanged -= Engine_PropertyChanged;
                 _engine = value;
-                //_engine.PropertyChanged += Engine_PropertyChanged;
-
                 this.NotifyPropertyChanged("Engine");
             }
         }
@@ -102,51 +81,14 @@ namespace ShortestPath.ViewModels
             set
             {
                 _searchOptionIndex = value;
-                this.DisplayGrid = this.ConstructGrid();
-                this.SearchResults = new List<string>();
-
-                // Construct the appropriate path engine
-                if (value == 0)
-                {
-                    this.Engine = new ShortestPath.Optimization.Naive.Engine();
-                }
-                else
-                {
-                    this.Engine = new ShortestPath.Optimization.DP.Engine();
-                }
                 this.NotifyPropertyChanged("SearchOptionIndex");
             }
         }
 
-        //void Engine_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == "Path")
-        //    {
-        //        this.PathLength = this.Engine.Path.Length;
-        //        this.SearchResults = this.Engine.Path.ToList();
-        //    }
-        //}
-
         #endregion SearchOptionIndex
 
-        #region ExecuteSearch
-
-        void ExecuteSearch(object arg)
-        {
-            var startPoint = new Optimization.Entities.GridLocation(0, 2);
-            var endPoint = new Optimization.Entities.GridLocation(3, 1);
-
-            // TODO: Restore if needed
-            //startPoint.IsStartPoint = true;
-            //endPoint.IsEndPoint = true;
-
-            this.DisplayGrid = this.ConstructGrid();
-            this.Engine.FindPath(DisplayGrid, startPoint, endPoint);
-        }
-
-        #endregion ExecuteSearch
-
         #region PathLength
+
         private int _pathLength = 0;
         public int PathLength
         {
@@ -157,9 +99,11 @@ namespace ShortestPath.ViewModels
                 this.NotifyPropertyChanged("PathLength");
             }
         }
+
         #endregion PathLength
 
         #region SearchResult
+
         private List<string> _searchResults = new List<string>();
         public List<string> SearchResults
         {
@@ -170,30 +114,65 @@ namespace ShortestPath.ViewModels
                 this.NotifyPropertyChanged("SearchResults");
             }
         }
+
         #endregion SearchResult
 
-        private void LoadBoard()
+        #region INotifyPropertyChanged Implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
         {
-            DisplayGrid = this.ConstructGrid();
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
-        private Optimization.Entities.Grid ConstructGrid()
-        {
-            var roadblocks = new List<Optimization.Entities.GridLocation>();
-            roadblocks.Add(new Optimization.Entities.GridLocation(1, 1, true));
-            roadblocks.Add(new Optimization.Entities.GridLocation(1, 2, true));
-            roadblocks.Add(new Optimization.Entities.GridLocation(1, 3, true));
-            roadblocks.Add(new Optimization.Entities.GridLocation(2, 0, true));
-            roadblocks.Add(new Optimization.Entities.GridLocation(2, 1, true));
+        #endregion INotifyPropertyChanged Implementation
 
-            return new Optimization.Entities.Grid(_gridSize, _gridSize, roadblocks);
+        private Grid ConstructGrid()
+        {
+            var roadblocks = new List<GridLocation>();
+            roadblocks.Add(new GridLocation(1, 1, true));
+            roadblocks.Add(new GridLocation(1, 2, true));
+            roadblocks.Add(new GridLocation(1, 3, true));
+            roadblocks.Add(new GridLocation(2, 0, true));
+            roadblocks.Add(new GridLocation(2, 1, true));
+
+            return new Grid(_gridSize, _gridSize, roadblocks);
         }
+
+        #region ExecuteSearch
+
+        void ExecuteSearch(object arg)
+        {
+            var startPoint = new GridLocation(0, 2);
+            var endPoint = new GridLocation(3, 1);
+
+            // Construct the appropriate path engine
+            if (this.SearchOptionIndex == 0)
+                this.Engine = new ShortestPath.Optimization.Naive.Engine();
+            else
+                this.Engine = new ShortestPath.Optimization.DP.Engine();
+
+            var grid = this.ConstructGrid();
+            var path = this.Engine.FindPath(grid, startPoint, endPoint);
+
+            this.DisplayGrid = new DisplayGrid(grid, startPoint, endPoint);
+            this.PathLength = path.Length;
+            this.SearchResults = path.ToList();
+        }
+
+        #endregion ExecuteSearch
 
         #region ApplicationClose
+
         void ApplicationClose(object arg)
         {
             Application.Current.MainWindow.Close();
         }
+
         #endregion ApplicationClose
     }
 }

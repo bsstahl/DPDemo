@@ -1,0 +1,16 @@
+C:\csdev\bstahl\ShortestPath.Optimization\bin\Debug\ShortestPath.Optimization.dll
+C:\csdev\bstahl\ShortestPath.Optimization\bin\Debug\ShortestPath.Optimization.pdb
+C:\csdev\bstahl\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.dll
+C:\csdev\bstahl\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.pdb
+C:\csdev\bstahl\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.csprojResolveAssemblyReference.cache
+E:\csdev\bstahl\ShortestPath.Optimization\bin\Debug\ShortestPath.Optimization.dll
+E:\csdev\bstahl\ShortestPath.Optimization\bin\Debug\ShortestPath.Optimization.pdb
+E:\csdev\bstahl\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.csprojResolveAssemblyReference.cache
+E:\csdev\bstahl\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.dll
+E:\csdev\bstahl\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.pdb
+C:\Users\barry\Source\Repos\DPDemo\ShortestPath.Optimization\bin\Debug\ShortestPath.Optimization.dll
+C:\Users\barry\Source\Repos\DPDemo\ShortestPath.Optimization\bin\Debug\ShortestPath.Optimization.pdb
+C:\Users\barry\Source\Repos\DPDemo\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.dll
+C:\Users\barry\Source\Repos\DPDemo\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.pdb
+C:\Users\barry\Source\Repos\DPDemo\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.csprojAssemblyReference.cache
+C:\Users\barry\Source\Repos\DPDemo\ShortestPath.Optimization\obj\Debug\ShortestPath.Optimization.csproj.CoreCompileInputs.cache

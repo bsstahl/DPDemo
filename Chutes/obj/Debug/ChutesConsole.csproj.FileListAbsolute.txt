@@ -1,0 +1,12 @@
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.exe.config
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.exe
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.pdb
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.Optimization.dll
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.Optimization.DP.dll
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.Optimization.Naive.dll
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.Optimization.DP.pdb
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.Optimization.Naive.pdb
+C:\Users\barry\Source\Repos\DPDemo\Chutes\bin\Debug\Chutes.Optimization.pdb
+C:\Users\barry\Source\Repos\DPDemo\Chutes\obj\Debug\ChutesConsole.csprojResolveAssemblyReference.cache
+C:\Users\barry\Source\Repos\DPDemo\Chutes\obj\Debug\Chutes.exe
+C:\Users\barry\Source\Repos\DPDemo\Chutes\obj\Debug\Chutes.pdb

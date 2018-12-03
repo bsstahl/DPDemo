@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPath.Optimization", "ShortestPath.Optimization\ShortestPath.Optimization.csproj", "{1E315551-2FE0-4644-AA0F-0031A7011B55}"
 EndProject
@@ -26,6 +26,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPathDesktop", "wpf\ShortestPath\ShortestPathDesktop.csproj", "{503E2523-CEA7-4810-87DD-5DFB403D4E98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortestPathConsole", "ShortestPath\ShortestPathConsole.csproj", "{A990D54A-087A-445E-B7FE-68C43C361186}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2822F79A-2432-4007-801A-DF2A0913F4C6}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,5 +88,8 @@ Global
 		{5AB02A8B-AD05-4DB1-B97F-CD1FC2923C19} = {669D7360-92D0-497B-8037-7D5D6AEBC676}
 		{503E2523-CEA7-4810-87DD-5DFB403D4E98} = {3767E24D-FB2D-4894-A7D5-3E9FBBCDFA48}
 		{A990D54A-087A-445E-B7FE-68C43C361186} = {3767E24D-FB2D-4894-A7D5-3E9FBBCDFA48}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C264D997-F254-4302-9058-C7282B17F458}
 	EndGlobalSection
 EndGlobal
